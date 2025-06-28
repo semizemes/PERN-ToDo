@@ -1,12 +1,15 @@
 import React, {Fragment, useState} from "react";
 
 const InputTodo = () => {
+
+    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+
     const [description, setDescription] = useState('');
 
     const onSubmitForm = async e => {
         try {
             const body = {description};
-            const response = await fetch('http://localhost:3000/todos', {
+            const response = await fetch(`${API_URL}/todos`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)

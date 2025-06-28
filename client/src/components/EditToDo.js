@@ -1,15 +1,17 @@
 import React, {Fragment, useState} from 'react';
 
-const EditToDo = ({todo}) => {
 
+const EditToDo = ({todo}) => {
     const [description, setDescription] = useState(todo.description);
+
+    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
     //edit desctiprion function
     const updateDesctiprion = async (e) => {
         e.preventDefault()
         try {
             const body = {description};
-            const response = await fetch(`http://localhost:3000/todos/${todo.todo_id}`, {
+            const response = await fetch(`${API_URL}/todos/${todo.todo_id}`, {
                 method: "PUT",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
